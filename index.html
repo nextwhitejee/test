@@ -842,7 +842,7 @@ const NW_QUOTE="Dear Aspirants, We don't need a miracle on exam day; we just nee
 const NW_QUOTE_BY="Words of an Aspirant";
 /* icon = key from NWI below · c1/c2 = tile gradient colours · ink = icon colour on the tile */
 const NW_PRIORITY=[
-  {icon:"telegram",c1:"#2AABEE",c2:"#1b7fc2",title:"Message us on Telegram",sub:"Feedback, ideas and bug reports.",cta:"Open Telegram",href:"https://t.me/@ashu_nambardar"+NW_TG_USER},
+  {icon:"telegram",c1:"#2AABEE",c2:"#1b7fc2",title:"Message us on Telegram",sub:"Feedback, ideas and bug reports.",cta:"Open Telegram",href:"https://t.me/ashu_nambardar"+NW_TG_USER},
   {icon:"timer",c1:"#f59e0b",c2:"#ef4444",title:NWJ?"JEE Main — Official Updates":"Countdown to NEET UG 2028",sub:NWJ?"Dates, notices and results from NTA.":"Get yourself a reality check.",cta:NWJ?"Open JEE Main site":"Open countdown",href:NWJ?"https://jeemain.nta.nic.in/":"https://clever-puffpuff-66d92d.netlify.app/"}
 ];
 const NW_ARCHIVE=NWJ?[{icon:"book",c1:"#818cf8",title:"Official NCERT Books",sub:"The base of JEE Main Physics, Chemistry & Maths.",href:"https://ncert.nic.in/textbook.php"},{icon:"bell",c1:"#f59e0b",title:"JEE Main (NTA)",sub:"Latest notices, syllabus and information bulletin.",href:"https://jeemain.nta.nic.in/"},{icon:"file",c1:"#ea580c",title:"JEE Advanced (IIT)",sub:"Official portal for JEE Advanced.",href:"https://jeeadv.ac.in/"}]:[
@@ -875,7 +875,7 @@ function nwShareTo(id,onCopied){
 }
 function nwSendFeedback(channel){
   const text="💡 Feedback — NEXT WHITE\n\nMy feedback / suggestion:\n\n";
-  if(channel==="telegram")window.open("https://t.me/@ashu_nambardar"+encodeURIComponent(NW_TG_USER)+"?text="+encodeURIComponent(text),"_blank","noopener");
+  if(channel==="telegram")window.open("https://t.me/ashu_nambardar"+encodeURIComponent(NW_TG_USER)+"?text="+encodeURIComponent(text),"_blank","noopener");
   else window.location.href="mailto:"+NW_EMAIL+"?subject="+encodeURIComponent("NEXT WHITE — Feedback")+"&body="+encodeURIComponent(text);
 }
 /* line icons for the Connect page — add a new key here to use it in the arrays above */
