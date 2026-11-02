@@ -836,14 +836,14 @@ function UT(){return r.jsxs(r.Fragment,{children:[r.jsxs("div",{className:"auror
    CONNECT PAGE  (Community + Feedback + Share with batchmates)
    Edit the data arrays below to change links / text.
    ====================================================================== */
-const NW_EMAIL="nextwhite.neet@gmail.com";   // report + feedback mails go here
+const NW_EMAIL="nextwhitejee@gmail.com";   // report + feedback mails go here
 const NW_TG_USER="ashu_nambardar";              // feedback via Telegram
 const NW_QUOTE="Dear Aspirants, We don't need a miracle on exam day; we just need 30 questions solved today. Stacking 900+ a month creates the 10,950+ question foundation only in a single year that earns the IIT seat.";
 const NW_QUOTE_BY="Words of an Aspirant";
 /* icon = key from NWI below · c1/c2 = tile gradient colours · ink = icon colour on the tile */
 const NW_PRIORITY=[
-  {icon:"telegram",c1:"#2AABEE",c2:"#1b7fc2",title:"Message us on Telegram",sub:"Feedback, ideas and bug reports.",cta:"Open Telegram",href:"https://t.me/ashu_nambardar"+NW_TG_USER},
-  {icon:"timer",c1:"#f59e0b",c2:"#ef4444",title:NWJ?"JEE Main — Official Updates":"Countdown to NEET UG 2028",sub:NWJ?"Dates, notices and results from NTA.":"Get yourself a reality check.",cta:NWJ?"Open JEE Main site":"Open countdown",href:NWJ?"https://jeemain.nta.nic.in/":"https://clever-puffpuff-66d92d.netlify.app/"}
+  {icon:"telegram",c1:"#2AABEE",c2:"#1b7fc2",title:"Message us on Telegram",sub:"Feedback, ideas and bug reports.",cta:"Open Telegram",href:"https://t.me/nextwhitejee"},
+  {icon:"timer",c1:"#f59e0b",c2:"#ef4444",title:NWJ?"Countdown to JEE Main 2028":"Countdown to NEET UG 2028",sub:"Get yourself a reality check.",cta:"Open countdown",href:NWJ?"https://waketoreality.netlify.app/":"https://clever-puffpuff-66d92d.netlify.app/"}
 ];
 const NW_ARCHIVE=NWJ?[{icon:"book",c1:"#818cf8",title:"Official NCERT Books",sub:"The base of JEE Main Physics, Chemistry & Maths.",href:"https://ncert.nic.in/textbook.php"},{icon:"bell",c1:"#f59e0b",title:"JEE Main (NTA)",sub:"Latest notices, syllabus and information bulletin.",href:"https://jeemain.nta.nic.in/"},{icon:"file",c1:"#ea580c",title:"JEE Advanced (IIT)",sub:"Official portal for JEE Advanced.",href:"https://jeeadv.ac.in/"}]:[
   {icon:"book",c1:"#818cf8",title:"Official NCERT Books",sub:"Crucial for NEET UG!",href:"https://ncert.nic.in/textbook.php"},
@@ -857,10 +857,10 @@ const NW_SHARE=[
   {id:"instagram",icon:"instagram",c1:"#f58529",c2:"#dd2a7b",title:"Instagram DM",sub:"Message copied — just paste & send"},
   {id:"snapchat",icon:"ghost",c1:"#FFE600",c2:"#F5C400",ink:"#111",title:"Snapchat",sub:"Message copied — just paste & send"}
 ];
-const NW_SITE_PC=location.href.split("#")[0],NW_SITE_MOBILE=NW_SITE_PC;
+const NW_SITE_PC=location.href.split("#")[0];
 const NW_INTRO="Hey! I've been prepping for "+(NWJ?"JEE":"NEET")+" using NEXT WHITE — it's got chapter-wise practice, full-length mock tests with the real Physics/Chem/Maths split, and it tracks your progress too. Thought it might help you as well 🩺📚";
 function nwShareMessage(){
-  return NW_INTRO+"\n\n💻 PC: "+NW_SITE_PC+"\n📱 Mobile: "+NW_SITE_MOBILE;
+  return NW_INTRO+"\n\n🔗 "+NW_SITE_PC;
 }
 function nwCopy(text){
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).catch(()=>{});return}
@@ -875,7 +875,7 @@ function nwShareTo(id,onCopied){
 }
 function nwSendFeedback(channel){
   const text="💡 Feedback — NEXT WHITE\n\nMy feedback / suggestion:\n\n";
-  if(channel==="telegram")window.open("https://t.me/ashu_nambardar"+encodeURIComponent(NW_TG_USER)+"?text="+encodeURIComponent(text),"_blank","noopener");
+  if(channel==="telegram")window.open("https://t.me/"+NW_TG_USER+"?text="+encodeURIComponent(text),"_blank","noopener");
   else window.location.href="mailto:"+NW_EMAIL+"?subject="+encodeURIComponent("NEXT WHITE — Feedback")+"&body="+encodeURIComponent(text);
 }
 /* line icons for the Connect page — add a new key here to use it in the arrays above */

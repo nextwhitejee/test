@@ -1,5 +1,5 @@
 /* NEXT WHITE — service worker (GitHub Pages friendly: all paths are relative) */
-const VERSION = 'nw-v1';                       // bump this to force-refresh every cache
+const VERSION = 'nw-v2';                       // bump this to force-refresh every cache
 const SHELL   = VERSION + '-shell';            // index.html, manifest, icons
 const IMAGES  = VERSION + '-diagrams';         // question diagrams (cached as you view them)
 const CDN     = VERSION + '-cdn';              // KaTeX + Google Fonts
