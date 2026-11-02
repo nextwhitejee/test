@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#07061a" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="NEXT WHITE" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="description" content="NEXT WHITE — India's gamified JEE test arena. Free forever. No login. XP, streaks, badges & deep analytics." />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script><title>NEXT WHITE — Gamified JEE Test Series & Analytics Arena</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2507,8 +2512,88 @@ table.nwmt{display:table!important;width:100%;max-width:none!important;overflow:
   .nwt-left .nwt-bar>.nwt-bar-pri>.nwt-next svg{display:none}
 }
 
-</style></head>
+</style>    <script>/* PWA: service worker + "Install app" chip */
+(function(){
+if(!("serviceWorker" in navigator)||location.protocol==="file:")return;
+window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(function(){})});
+var KEY="nw-install-dismissed",deferred=null,box=null;
+function dismissed(){try{return localStorage.getItem(KEY)==="1"}catch(e){return false}}
+function hide(){if(box&&box.parentNode)box.parentNode.removeChild(box);box=null}
+function show(){
+if(box||!deferred||dismissed()||!document.body)return;
+box=document.createElement("div");
+box.style.cssText="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:99997;display:flex;align-items:center;gap:6px;padding:4px 6px 4px 4px;border-radius:999px;border:1px solid var(--stroke-strong,rgba(255,255,255,.25));background:var(--card-solid,#17143d);box-shadow:0 6px 18px -8px rgba(0,0,0,.6);font:600 13.5px Inter,system-ui,sans-serif";
+var b=document.createElement("button");b.type="button";b.textContent="\uD83D\uDCF2 Install app";
+b.style.cssText="padding:8px 14px;border:0;border-radius:999px;background:linear-gradient(135deg,#6366f1,#f59e0b);color:#fff;font:inherit;cursor:pointer";
+b.onclick=function(){var d=deferred;if(!d)return;deferred=null;hide();d.prompt();d.userChoice.then(function(){}).catch(function(){})};
+var x=document.createElement("button");x.type="button";x.setAttribute("aria-label","Dismiss");x.textContent="\u2715";
+x.style.cssText="padding:6px 10px;border:0;background:transparent;color:var(--t2,#a5a3c9);font:inherit;cursor:pointer";
+x.onclick=function(){try{localStorage.setItem(KEY,"1")}catch(e){}hide()};
+box.appendChild(b);box.appendChild(x);document.body.appendChild(box);
+setTimeout(hide,20000);
+}
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();deferred=e;
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",show);else setTimeout(show,2500)});
+window.addEventListener("appinstalled",function(){deferred=null;hide();try{localStorage.setItem(KEY,"1")}catch(e){}});
+})();</script>
+    <script data-goatcounter="https://nextwhitejee.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+  </head>
   <body>
     <div id="root"></div>
-  </body>
+  <style id="nwtg-css">
+.nwtg-ov{position:fixed;inset:0;z-index:2147483200;display:flex;align-items:center;justify-content:center;padding:16px;background:var(--scrim);font-family:var(--font-body,Inter,system-ui,sans-serif);animation:nwtgIn .2s ease-out both;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nwtg-ov.out{opacity:0;transition:opacity .18s}
+@keyframes nwtgIn{from{opacity:0}to{opacity:1}}
+@keyframes nwtgPop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+.nwtg{position:relative;width:100%;max-width:440px;max-height:92vh;overflow:auto;border-radius:28px;padding:28px 22px 20px;background:var(--card-solid);color:var(--t1);border:1px solid var(--stroke-strong);box-shadow:0 24px 60px -16px var(--shadow),0 0 60px -20px var(--glow-violet);animation:nwtgPop .26s cubic-bezier(.2,.9,.3,1.1) both;-webkit-overflow-scrolling:touch}
+.nwtg:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:28px 28px 0 0;background:linear-gradient(92deg,var(--brand-cyan),var(--brand-violet) 55%,var(--brand-purple))}
+.nwtg:after{content:"";position:absolute;width:220px;height:220px;right:-80px;top:-90px;border-radius:50%;background:radial-gradient(circle,var(--glow-cyan),transparent 70%);pointer-events:none}
+.nwtg-x{position:absolute;right:14px;top:14px;width:32px;height:32px;border-radius:50%;border:1px solid var(--stroke);background:var(--card);color:var(--t2);font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;-webkit-tap-highlight-color:transparent}
+.nwtg-x:hover{background:var(--card-hover);color:var(--t1)}
+.nwtg-ico{position:relative;width:52px;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--brand-cyan),var(--brand-violet) 60%,var(--brand-purple));box-shadow:0 10px 24px -10px var(--brand-violet)}
+.nwtg-ico svg{width:26px;height:26px;fill:#fff;margin-left:-2px}
+.nwtg h3{position:relative;margin:16px 0 0;font-family:var(--font-display,"Space Grotesk",sans-serif);font-size:25px;line-height:1.15;font-weight:700;letter-spacing:-.01em;color:var(--t1)}
+.nwtg h3 b{background:linear-gradient(92deg,var(--brand-cyan),var(--brand-violet) 55%,var(--brand-purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nwtg>p{position:relative;margin:8px 0 0;font-size:13.5px;line-height:1.55;color:var(--t2)}
+.nwtg-list{position:relative;display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.nwtg-card{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:18px;text-decoration:none;color:var(--t1);background:var(--card);border:1px solid var(--stroke);transition:transform .15s,border-color .15s,background .15s;-webkit-tap-highlight-color:transparent}
+.nwtg-card:hover{transform:translateY(-2px);border-color:var(--brand-cyan);background:var(--card-hover)}
+.nwtg-card:active{transform:scale(.98)}
+.nwtg-card .e{flex:none;width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;background:linear-gradient(135deg,var(--ov-1),var(--ov-2));border:1px solid var(--stroke)}
+.nwtg-card .t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.nwtg-card .t b{font-family:var(--font-display,"Space Grotesk",sans-serif);font-size:15px;font-weight:700;color:var(--t1)}
+.nwtg-card .t small{font-size:11.5px;line-height:1.35;color:var(--t3)}
+.nwtg-card .go{flex:none;padding:8px 14px;border-radius:999px;font-size:12.5px;font-weight:700;color:#fff;background:linear-gradient(92deg,var(--brand-cyan),var(--brand-violet) 60%,var(--brand-purple));box-shadow:0 8px 18px -8px var(--brand-violet)}
+.nwtg-later{position:relative;display:block;width:100%;margin-top:14px;padding:10px;border:0;background:none;color:var(--t3);font:600 12.5px var(--font-body,Inter,sans-serif);cursor:pointer}
+.nwtg-later:hover{color:var(--t1)}
+@media(max-width:420px){.nwtg{padding:26px 16px 16px}.nwtg h3{font-size:22px}.nwtg-card .go{padding:7px 11px}}
+</style>
+<script id="nwtg-js">(function(){
+var EXAM="JEE",DISC="https://t.me/nextwhitejee",ANN="https://t.me/nextwhite_jeeneet";
+var PLANE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 3.6 2.8 10.9c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.7-.8l3.2-15.2c.3-1.3-.5-1.9-1.4-1.5ZM8.7 13.3l9.7-6.1c.5-.3.9-.1.5.2l-8.1 7.3-.3 3.4-1.8-4.8Z"/></svg>';
+function build(){
+if(document.getElementById("nwtg-ov"))return;
+var ov=document.createElement("div");ov.id="nwtg-ov";ov.className="nwtg-ov";
+ov.setAttribute("role","dialog");ov.setAttribute("aria-modal","true");ov.setAttribute("aria-label","Join NEXT WHITE on Telegram");
+ov.innerHTML='<div class="nwtg"><button class="nwtg-x" type="button" aria-label="Close">&times;</button>'
++'<div class="nwtg-ico">'+PLANE+'</div>'
++'<h3>Join the <b>NEXT WHITE</b> community</h3>'
++'<p>Study with fellow '+EXAM+' aspirants, get your doubts solved and never miss an update.</p>'
++'<div class="nwtg-list">'
++'<a class="nwtg-card" href="'+DISC+'" target="_blank" rel="noopener noreferrer"><span class="e">\uD83D\uDCAC</span><span class="t"><b>'+EXAM+' Discussion Group</b><small>Doubts, strategy &amp; daily chats with '+EXAM+' aspirants</small></span><span class="go">Join</span></a>'
++'<a class="nwtg-card" href="'+ANN+'" target="_blank" rel="noopener noreferrer"><span class="e">\uD83D\uDCE2</span><span class="t"><b>Announcement Channel</b><small>Latest updates, new tests &amp; features</small></span><span class="go">Join</span></a>'
++'</div><button class="nwtg-later" type="button">Maybe later</button></div>';
+function close(){ov.classList.add("out");setTimeout(function(){if(ov.parentNode)ov.parentNode.removeChild(ov);document.removeEventListener("keydown",esc,true)},180)}
+function esc(e){if(e.key==="Escape")close()}
+ov.addEventListener("click",function(e){if(e.target===ov)close()});
+ov.querySelector(".nwtg-x").addEventListener("click",close);
+ov.querySelector(".nwtg-later").addEventListener("click",close);
+document.addEventListener("keydown",esc,true);
+document.body.appendChild(ov);
+}
+function go(){var t=0,iv=setInterval(function(){t++;var r=document.getElementById("root");if((r&&r.children.length)||t>40){clearInterval(iv);setTimeout(build,600)}},150)}
+if(document.readyState==="complete")go();else window.addEventListener("load",go);
+})();</script>
+</body>
 </html>
