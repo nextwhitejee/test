@@ -2803,6 +2803,20 @@ if(document.readyState==="complete")go();else window.addEventListener("load",go)
   document.addEventListener('error', function (e) {
     var t = e.target;
     if (!t || t.tagName !== 'IMG' || !t.closest || !t.closest('.nwt-qscroll')) return;
+    /* extension fallback: Q12.png may really be Q12.jpg / .jpeg / .PNG etc. */
+    var raw = (t.getAttribute('data-nwx-src') || t.getAttribute('src') || '').split('?')[0];
+    var em = raw.match(/^((?:.*\/)?diagrams\/)([^\/]+)\.(png|jpg|jpeg|webp|PNG|JPG|JPEG)$/);
+    if (em) {
+      var exts = ['png', 'jpg', 'jpeg', 'webp', 'PNG', 'JPG', 'JPEG'];
+      var ei = +(t.getAttribute('data-nwx-ext') || 0);
+      while (ei < exts.length && exts[ei] === em[3]) ei++;
+      if (ei < exts.length) {
+        t.setAttribute('data-nwx-ext', String(ei + 1));
+        t.setAttribute('data-nwx-src', em[1] + em[2] + '.' + exts[ei]);
+        t.src = em[1] + em[2] + '.' + exts[ei];
+        return;
+      }
+    }
     var n = +(t.getAttribute('data-nwx-try') || 0);
     if (n < 2) {
       t.setAttribute('data-nwx-try', String(n + 1));
