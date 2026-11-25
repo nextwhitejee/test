@@ -1,5 +1,5 @@
 /* NEXT WHITE — service worker (GitHub Pages friendly: all paths are relative) */
-const VERSION = 'nw-v7';                       // bump this to force-refresh every cache
+const VERSION = 'nw-v8';                       // bump this to force-refresh every cache
 const SHELL   = VERSION + '-shell';            // index.html, manifest, icons
 const IMAGES  = VERSION + '-diagrams';         // question diagrams (cached as you view them)
 const CDN     = VERSION + '-cdn';              // KaTeX + Google Fonts
@@ -67,7 +67,27 @@ async function handleNavigation(event) {
   return Promise.race([net, slow]).catch(() => cached);
 }
 
-// Show cache instantly, refresh it in the background.
+// Diagrams: show cache instantly, refresh in the background.
+// Only genuine images are ever stored (never a 404 page / HTML), and a failed or
+// non-image network answer is never allowed to replace or hide a good cached copy.
+function isImage(res) {
+  return res && res.ok && /^image\//i.test(res.headers.get('content-type') || '');
+}
+async function diagramFetch(event, cacheName) {
+  const cache = await caches.open(cacheName);
+  const hit = await cache.match(event.request);
+  if (hit && !isImage(hit)) { await cache.delete(event.request); }
+  const good = hit && isImage(hit) ? hit : null;
+  const net = fetch(event.request, { cache: 'no-cache' }).then((res) => {
+    if (isImage(res)) cache.put(event.request, res.clone());
+    return res;
+  }).catch(() => null);
+  if (good) { event.waitUntil(net); return good; }
+  const res = await net;
+  return res || Response.error();
+}
+
+// Icons / manifest: show cache instantly, refresh it in the background.
 async function staleWhileRevalidate(event, cacheName) {
   const cache = await caches.open(cacheName);
   const hit = await cache.match(event.request);
@@ -101,7 +121,7 @@ self.addEventListener('fetch', (event) => {
   }
   if (url.origin === location.origin) {
     if (url.pathname.includes('/diagrams/')) {
-      event.respondWith(staleWhileRevalidate(event, IMAGES));
+      event.respondWith(diagramFetch(event, IMAGES));
     } else if (/\/(icons\/|manifest\.webmanifest$)/.test(url.pathname)) {
       event.respondWith(staleWhileRevalidate(event, SHELL));
     }
